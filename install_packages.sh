@@ -3,7 +3,6 @@
 sudo pacman -Syu
 
 sudo pacman -S --needed \
-    swayfx \
     waybar \
     foot \
     swaybg \
