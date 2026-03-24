@@ -1,0 +1,86 @@
+@import url("../colors.css");
+
+* {
+    font-family: JetBrainsMono NF, Symbols Nerd Font;
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 0;
+    border-radius: 5px;
+}
+
+window#waybar {
+    color: @tertiary;
+    background-color: @primary;
+    transition-duration: .7s;
+    border-radius: 8px;
+}
+
+#workspaces button {
+    padding: 4px 8px;
+    border-radius: 5px;
+    background: none;
+    color: @tertiary;
+    transition: color 0.3s ease-in-out;
+}
+
+#workspaces button:hover {
+    color: @secondary;
+    outline: none;
+    box-shadow: none;
+}
+
+#workspaces button.focused,
+#workspaces button.urgent {
+    background-color: @accent;
+    color: @secondary;
+}
+
+
+#workspaces button.empty {
+    margin: 2px;
+    padding: 4px 8px;
+    opacity: 0.5;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    transition: color 0.3s;
+}
+
+#custom-scren,
+#custom-rec,
+#pulseaudio,
+#custom-wf,
+#custom-bt,
+#language,
+#battery {
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: color 0.3s;
+    color: @tertiary;
+}
+
+#battery.charging, #battery.plugged {
+    color: #a9b665;
+}
+
+#battery.warning:not(.charging) {
+    color: #ea6962; 
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#custom-scren:hover,
+#custom-rec:hover,
+#pulseaudio:hover,
+#custom-wf:hover,
+#custom-bt:hover,
+#language:hover,
+#battery:hover {
+    color: @secondary;
+}

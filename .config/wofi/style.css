@@ -1,0 +1,63 @@
+@import url("/home/spr05/.config/colors.css");
+
+window {
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 30px; 
+    border-radius: 12px;
+    background-color: @primary;
+    box-shadow: 0 0px 7px rgba(0, 0, 0, 0.7);
+}
+
+#input {
+    margin: 15px;
+    border: none;
+    color: @primary;
+    border-radius: 5px;
+    background-color: @secondary;
+}
+
+#input image {
+    color: @primary;
+}
+
+#inner-box {
+    margin: 5px;
+    background-color: @primary;
+    border: none;
+}
+
+#text {
+    margin: 10px;
+    padding: 5px;
+    color: @tertiary;
+    border: none;
+    max-width: 400px; 
+}
+
+#text:selected {
+    margin: 10px;
+    color: @primary;
+}
+
+#entry {
+    padding: 0px 10px;
+    margin: 0px 10px;
+    background-color: @primary;
+    border-radius: 5px;
+    border: none;
+}
+
+#entry:selected {
+    padding: 0px 10px;
+    margin: 0px 10px;
+    background-color: @tertiary;
+    border-radius: 5px;
+    border: none;
+}
+
+scrollbar {
+    display: none;
+}

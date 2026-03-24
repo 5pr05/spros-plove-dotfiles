@@ -1,0 +1,133 @@
+[
+  {
+    "output": "eDP-1",
+    "height": 30,
+    "width": 1890,
+    "margin-top": 15,
+    "reload_style_on_change": true,
+
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "pulseaudio", "battery", "custom/wf", "custom/bt", "sway/language"],
+
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "ignore-workspaces": ["6", "7", "8", "9", "10"],
+      "all-outputs": false,
+      "format": "{icon}",
+      "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+      },
+      "format-icons": {
+        "1": "[ WWW ]",
+        "2": "[ CRT ]",
+        "3": "[ HCK ]",
+        "4": "[ SHL ]",
+        "5": "[ VIB ]"
+      }
+    },
+
+    "pulseaudio": {
+      "scroll-step": 5,
+      "format": "{icon}",
+      "format-muted": "[  x  ]",
+      "format-icons": {
+        "default": ["[    ]", "[    ]", "[    ]"]
+      },
+      "on-click": "pkill pavucontrol || pavucontrol",
+      "tooltip": false
+    },
+
+    "battery": {
+      "format": "[  {capacity}% {icon} ]",
+      "tooltip": false,
+      "format-icons": { "charging": "" },
+      "interval": 5
+    },
+
+    "custom/wf": {
+      "format": "[  WIFI  ]",
+      "on-click": "pkill wofi || ~/.config/wofi/wofi-wifi-menu.sh",
+      "tooltip": false
+    },
+
+    "custom/bt": {
+      "format": "[  BT  ]",
+      "on-click": "pkill wofi || ~/.config/wofi/wofi-bluetooth",
+      "escape": true,
+      "tooltip": false
+    },
+
+    "sway/language": {
+      "format": "[  {}  ]",
+      "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+      "tooltip": false
+    },
+
+    "clock": {
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "format": "{:%I:%M %p}",
+      "format-alt": "{:%Y-%m-%d}"
+    }
+  },
+
+  {
+    "output": "HDMI-A-2",
+    "height": 30,
+    "width": 1890,
+    "margin-top": 15,
+    "reload_style_on_change": true,
+
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "sway/language"],
+
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": false,
+      "format": "{icon}",
+      "ignore-workspaces": ["1", "2", "3", "4", "5"],
+      "persistent-workspaces": {
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": []
+      },
+      "format-icons": {
+        "6": "[ WWW' ]",
+        "7": "[ CRT' ]",
+        "8": "[ HCK' ]",
+        "9": "[ SHL' ]",
+        "10": "[ VIB' ]"
+      }
+    },
+
+    "pulseaudio": {
+      "scroll-step": 5,
+      "format": "{icon}",
+      "format-muted": "[  x  ]",
+      "format-icons": {
+        "default": ["[    ]", "[    ]", "[    ]"]
+      },
+      "on-click": "pkill pavucontrol || pavucontrol",
+      "tooltip": false
+    },
+
+    "sway/language": {
+      "format": "[  {}  ]",
+      "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+      "tooltip": false
+    },
+
+    "clock": {
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "format": "{:%I:%M %p}",
+      "format-alt": "{:%Y-%m-%d}"
+    }
+  }
+]

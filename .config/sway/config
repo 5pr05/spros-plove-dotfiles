@@ -1,0 +1,193 @@
+include ../user.conf
+
+# Applications
+set $term foot
+set $menu wofi --show drun
+
+# Autostart applications
+exec autotiling
+exec_always 'killall -q waybar; waybar'
+exec swaync
+exec sh -c "Telegram & sleep 2; keepassxc"
+exec brightnessctl set 100%
+exec wl-paste --watch cliphist store
+exec kanshi
+exec /usr/lib/xdg-desktop-portal -r
+exec /usr/lib/xdg-desktop-portal-wlr -r
+exec swayosd-server
+
+# Workspace assignments
+assign [app_id="firefox"] workspace 6
+assign [class="obsidian"] workspace 2
+assign [app_id="foot"] workspace 4
+assign [app_id="org.telegram.desktop"] workspace 5
+assign [title="KeePassXC"] workspace 5
+
+workspace 1 output $monitor-left
+workspace 2 output $monitor-left
+workspace 3 output $monitor-left
+workspace 4 output $monitor-left
+workspace 5 output $monitor-left
+
+workspace 6 output $monitor-right
+workspace 7 output $monitor-right
+workspace 8 output $monitor-right
+workspace 9 output $monitor-right
+workspace 10 output $monitor-right
+
+# Window focus behavior
+focus_on_window_activation none
+for_window [class=".*"] focus
+for_window [class=".*"] urgent disable
+
+# Floating window settings
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, border none, resize set 600px 400px, move right 620px, move up 305px
+for_window [app_id="nm-connection-editor"] floating enable, border none, resize set 600px 400px, move right 620px, move up 305px
+
+for_window [app_id="nemo"] floating enable, resize set 900px 600px, move position center
+for_window [app_id="org.gnome.FileRoller"] floating enable, border none, move position center
+for_window [app_id="mirage"] floating enable, border none, resize set 800px 500px, move position center
+
+blur enable
+blur_radius 8
+blur_passes 3
+blur_noise 0.02
+
+layer_effects "waybar" corner_radius 8
+layer_effects "wofi" corner_radius 8
+
+corner_radius 8
+smart_corner_radius enable
+default_dim_inactive 0.3
+dim_inactive_colors.unfocused #000000FF
+dim_inactive_colors.urgent #900000FF
+
+gaps inner 15
+smart_gaps on
+
+default_border pixel 0
+default_floating_border pixel 0
+for_window [tiling] border pixel 0
+for_window [floating] border none
+smart_borders on
+
+# Appearance settings
+output $monitor-left bg $wallpaper1 fill
+output $monitor-right bg $wallpaper2 fill
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set org.gnome.desktop.interface gtk-theme 'Everforest-Pink-Dark'
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    gsettings set org.gnome.desktop.interface icon-theme 'Gruvbox-Plus-Dark'
+    gsettings set $gnome-schema font-name 'JetBrainsMono NF 10'
+    gsettings set org.gnome.desktop.wm.preferences button-layout ''
+}
+
+# Monitor setup
+output $monitor-right position 0,0 scale 1
+output $monitor-left position -1920,0 scale 1
+
+for_window [class="gluqlo"] fullscreen enable, border none
+exec swayidle -w \
+    timeout 300 '../../scripts/screensaver.sh' \
+    resume 'killall -q gluqlo'
+
+# Keyboard layout
+input * {
+    xkb_layout $kbd_layout
+    xkb_variant $kbd_variant
+    xkb_options $kbd_options
+}
+
+# Touchpad settings
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+# Hotkeys
+bindsym --to-code $mod+Return exec foot
+bindsym --to-code $mod+n exec nemo
+bindsym --to-code $mod+b exec $browser
+bindsym --to-code $mod+o exec obsidian
+bindsym --to-code $mod+m exec spotify
+bindsym --to-code $mod+g exec geany
+bindsym --to-code $mod+d exec wofi --show drun --height 560 --width 560 --hide-scroll
+bindsym --to-code $mod+c exec 'cliphist list | cut -c 1-47 | wofi --show dmenu --height 500 --width 500 | cliphist decode | wl-copy'
+bindsym --to-code $mod+Shift+c exec 'cliphist wipe'
+bindsym $mod+Shift+s exec 'grim -g "$(slurp)" - | wl-copy'
+
+# Volume and brightness control
+bindsym $mod+F1 exec swayosd-client --output-volume mute-toggle
+bindsym $mod+F2 exec swayosd-client --output-volume -5
+bindsym $mod+F3 exec swayosd-client --output-volume +5
+
+bindsym $mod+F5 exec swayosd-client --brightness -1
+bindsym $mod+F6 exec swayosd-client --brightness +1
+
+# Window management
+bindsym --to-code $mod+q kill
+floating_modifier $mod normal
+bindsym --to-code $mod+Shift+r reload
+
+# Focus movement
+bindsym --to-code $mod+Left focus left
+bindsym --to-code $mod+Down focus down
+bindsym --to-code $mod+Up focus up
+bindsym --to-code $mod+Right focus right
+
+# Window movement
+bindsym --to-code $mod+Shift+Left move left
+bindsym --to-code $mod+Shift+Down move down
+bindsym --to-code $mod+Shift+Up move up
+bindsym --to-code $mod+Shift+Right move right
+
+# Workspace management
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym --to-code $mod+Shift+1 move container to workspace 1
+bindsym --to-code $mod+Shift+2 move container to workspace 2
+bindsym --to-code $mod+Shift+3 move container to workspace 3
+bindsym --to-code $mod+Shift+4 move container to workspace 4
+bindsym --to-code $mod+Shift+5 move container to workspace 5
+bindsym --to-code $mod+Shift+6 move container to workspace 6
+bindsym --to-code $mod+Shift+7 move container to workspace 7
+bindsym --to-code $mod+Shift+8 move container to workspace 8
+bindsym --to-code $mod+Shift+9 move container to workspace 9
+bindsym --to-code $mod+Shift+0 move container to workspace 10
+
+# Fullscreen toggle
+bindsym --to-code $mod+f fullscreen
+
+# Floating mode toggle
+bindsym --to-code $mod+s floating toggle
+
+# Resize mode
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+shadows enable
+shadow_blur_radius 20
+shadow_color #000000
+shadow_offset 0 7
+
+# Include additional configs
+include /etc/sway/config.d/*
