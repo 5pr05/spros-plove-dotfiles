@@ -1,7 +1,7 @@
 const wallpapers = [
-    { id: "wall1", name: "the book", filename: "the_book_and_old_converses.png", url: "https://raw.githubusercontent.com/G3N-spr05/dotfiles/main/pics/wallpaper_16x9_1.png" },
-    { id: "wall2", name: "quiet..",  filename: "quiet_babushkas_rug.png", url: "https://raw.githubusercontent.com/G3N-spr05/dotfiles/main/pics/Persian_rug_1920x1080.png" },
-    { id: "wall3", name: "accc", filename: "accc_sssnake.jpg", url: "https://picsum.photos/id/20/1920/1080" },
+    { id: "wall1", name: "the book", filename: "the_book_and_old_converses.png", url: "https://raw.githubusercontent.com/5pr05/spros-plove-dotfiles/refs/heads/main/.config/wallpapers/the_book_and_old_converses.png" },
+    { id: "wall2", name: "quiet..",  filename: "quiet_babushkas_rug.png", url: "https://raw.githubusercontent.com/5pr05/spros-plove-dotfiles/refs/heads/main/.config/wallpapers/quiet_babushkas_rug.png" },
+    { id: "wall3", name: "accc", filename: "accc_sssnake.jpg", url: "https://raw.githubusercontent.com/5pr05/spros-plove-dotfiles/refs/heads/main/.config/wallpapers/accc_sssnake.png" },
 ];
 
 let selW1 = wallpapers[0];
