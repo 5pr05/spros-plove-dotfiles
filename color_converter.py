@@ -18,7 +18,7 @@ color_replacements = {
     "5E81AC": "736D51",
 }
 
-NORD_URL = "https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim"
+NORD_URL = "https://raw.githubusercontent.com/nordtheme/vim/main/colors/nord.vim"
 
 HOME = str(Path.home())
 NVIM_COLORS_DIR = os.path.join(HOME, ".config", "nvim", "colors")
