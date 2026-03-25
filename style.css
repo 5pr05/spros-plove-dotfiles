@@ -182,9 +182,9 @@ h1 span { color: var(--accent); }
     overflow: hidden; max-height: 0; opacity: 0;
     transition: max-height 0.35s ease, opacity 0.3s ease;
 }
-.mon-field-2.visible { max-height: 100px; opacity: 1; }
+.mon-field-2.visible { max-height: 150px; opacity: 1; } 
 @media (max-width: 560px) {
-    .mon-field-2.visible { max-height: 160px; }
+    .mon-field-2.visible { max-height: 220px; }
 }
 .field-group label {
     display: block; font-size: 10px; letter-spacing: 2px;
