@@ -24,8 +24,8 @@ sudo pacman -S --needed \
     foot zsh fzf zoxide bat fastfetch htop \
     neovim nodejs npm lua luarocks stow \
     nemo tumbler webp-pixbuf-loader file-roller lsix \
-    firefox mpv keepassxc \
-    brightnessctl ddcutil
+    firefox mpv \
+    brightnessctl
 
 echo "/ [ ^_^]_##     Installing themes, fonts, and SwayFX from AUR..."
 yay -S --needed \
