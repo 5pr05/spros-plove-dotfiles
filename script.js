@@ -144,8 +144,8 @@ set $monitor-left   ${m1}
 set $resolution-left ${r1}
 set $monitor-right  ${isDual ? m2 : "NONE"}
 set $resolution-right ${isDual ? r2 : "NONE"}
-set $wallpaper1 ~/.config/sway/wallpaper/${selW1.filename}
-set $wallpaper2 ${isDual ? `~/.config/sway/wallpaper/${selW2.filename}` : `~/.config/sway/wallpaper/${selW1.filename}`}
+set $wallpaper1 ~/.config/wallpaper/${selW1.filename}
+set $wallpaper2 ${isDual ? `~/.config/wallpaper/${selW2.filename}` : `~/.config/wallpaper/${selW1.filename}`}
 
 set $browser ${document.getElementById("browser").value}
 
