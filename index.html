@@ -185,12 +185,22 @@
           <div class="field-group">
             <label>Browser</label>
             <div class="select-wrap">
-              <select id="browser">
+              <select id="browser" onchange="updateUI()">
                 <option value="firefox">Firefox</option>
-                <option value="google-chrome">Google Chrome</option>
+                <option value="google-chrome-stable">Google Chrome</option>
                 <option value="brave">Brave</option>
                 <option value="librewolf">LibreWolf</option>
               </select>
+            </div>
+            <div
+              class="cmd-hint"
+              style="margin-top: 12px; border-left-color: var(--muted)"
+            >
+              <span class="cmd-hint-label">install:</span>
+              <code id="install-hint">sudo pacman -S firefox</code>
+              <button class="cmd-hint-copy" onclick="copyCmd(this)">
+                copy
+              </button>
             </div>
           </div>
           <div class="field-group">

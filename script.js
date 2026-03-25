@@ -19,6 +19,13 @@ const wallpapers = [
   },
 ];
 
+const installCommands = {
+    'firefox': 'sudo pacman -S firefox',
+    'google-chrome-stable': 'yay -S google-chrome',
+    'brave': 'yay -S brave-bin',
+    'librewolf': 'yay -S librewolf-bin'
+};
+
 let selW1 = wallpapers[0];
 let selW2 = wallpapers[1];
 
@@ -83,25 +90,31 @@ function updateUI() {
   const m2 = document.getElementById("mon_right").value.trim() || "HDMI-A-2";
   const r2 = getResolution("right");
 
+  const browser = document.getElementById('browser').value;
+    const hintElement = document.getElementById('install-hint');
+    if (hintElement && installCommands[browser]) {
+        hintElement.textContent = installCommands[browser];
+    }
+
   document.getElementById("mon-code").textContent = dual
     ? `${m1} (${r1})  ·  ${m2} (${r2})`
     : `${m1} (${r1})`;
 }
 
 function copyCmd(btn) {
-  navigator.clipboard
-    .writeText("swaymsg -t get_outputs | grep name")
-    .then(() => {
-      const orig = btn.textContent;
-      btn.textContent = "copied!";
-      btn.style.color = "var(--accent)";
-      btn.style.borderColor = "var(--accent)";
-      setTimeout(() => {
-        btn.textContent = orig;
-        btn.style.color = "";
-        btn.style.borderColor = "";
-      }, 1800);
-    });
+  const codeText = btn.parentElement.querySelector('code').textContent;
+  
+  navigator.clipboard.writeText(codeText).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = "copied!";
+    btn.style.color = "var(--accent)";
+    btn.style.borderColor = "var(--accent)";
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.color = "";
+      btn.style.borderColor = "";
+    }, 1800);
+  });
 }
 
 function syncColor(id) {
@@ -143,9 +156,9 @@ async function buildZip() {
 set $monitor-left   ${m1}
 set $resolution-left ${r1}
 set $monitor-right  ${isDual ? m2 : "NONE"}
-set $resolution-right ${isDual ? r2 : "NONE"}
-set $wallpaper1 ~/.config/wallpaper/${selW1.filename}
-set $wallpaper2 ${isDual ? `~/.config/wallpaper/${selW2.filename}` : `~/.config/wallpaper/${selW1.filename}`}
+set $resolution-right ${isDual ? r2 : "1920x1080"}
+set $wallpaper1 ~/.config/wallpapers/${selW1.filename}
+set $wallpaper2 ${isDual ? `~/.config/wallpapers/${selW2.filename}` : `~/.config/wallpapers/${selW1.filename}`}
 
 set $browser ${document.getElementById("browser").value}
 
