@@ -50,7 +50,7 @@ stow .
 
 echo "Running colorconverter.py to configure Neovim palette..."
 if [ -f "colorconverter.py" ]; then
-    python colorconverter.py
+    python color_converter.py
     echo "Neovim palette successfully converted for G3N SWAY ENGINE!"
 else
     echo "File colorconverter.py not found. Make sure you are in the dotfiles directory."
