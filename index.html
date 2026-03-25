@@ -1,206 +1,357 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>SPROS Sway Configurator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="hand.svg">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <img class="sticky-logo" src="hand.svg" alt="logo">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Unbounded:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="hand.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <img class="sticky-logo" src="hand.svg" alt="logo" />
 
-<div class="page-wrap">
-
-    <header>
-        <h1>SWAY <img src="spros.svg" alt="SPROS" style="height: 3em; margin-bottom: -1em; position: relative; z-index: 2;"><br>CONFIGURATOR</h1>
+    <div class="page-wrap">
+      <header>
+        <h1>
+          SWAY
+          <img
+            src="spros.svg"
+            alt="SPROS"
+            style="
+              height: 3em;
+              margin-bottom: -1em;
+              position: relative;
+              z-index: 2;
+            "
+          /><br />CONFIGURATOR
+        </h1>
         <p class="header-sub">// tailor my setup to your liking</p>
-    </header>
+      </header>
 
-    <div class="card" data-label="01">
+      <div class="card" data-label="01">
         <div class="card-title">Modifier Key</div>
         <div class="mod-group">
-            <label class="mod-btn active" id="label-mod4">
-                <input type="radio" name="mod" value="Mod4" checked onchange="updateUI()">
-                <div class="mod-icon">⊞</div>
-                <div class="mod-label">
-                    <strong>Win</strong>
-                    <span>Mod4</span>
-                </div>
-                <div class="mod-dot"></div>
-            </label>
-            <label class="mod-btn" id="label-mod1">
-                <input type="radio" name="mod" value="Mod1" onchange="updateUI()">
-                <div class="mod-icon">⌥</div>
-                <div class="mod-label">
-                    <strong>Alt</strong>
-                    <span>Mod1</span>
-                </div>
-                <div class="mod-dot"></div>
-            </label>
+          <label class="mod-btn active" id="label-mod4">
+            <input
+              type="radio"
+              name="mod"
+              value="Mod4"
+              checked
+              onchange="updateUI()"
+            />
+            <div class="mod-icon">⊞</div>
+            <div class="mod-label">
+              <strong>Win</strong>
+              <span>Mod4</span>
+            </div>
+            <div class="mod-dot"></div>
+          </label>
+          <label class="mod-btn" id="label-mod1">
+            <input type="radio" name="mod" value="Mod1" onchange="updateUI()" />
+            <div class="mod-icon">⌥</div>
+            <div class="mod-label">
+              <strong>Alt</strong>
+              <span>Mod1</span>
+            </div>
+            <div class="mod-dot"></div>
+          </label>
         </div>
-    </div>
+      </div>
 
-    <div class="card" data-label="02">
+      <div class="card" data-label="02">
         <div class="card-title">Monitors</div>
         <div class="toggle-row">
-            <div class="toggle-label">
-                <strong>Use Dual Monitors</strong>
-            </div>
-            <label class="switch">
-                <input type="checkbox" id="use_dual" onchange="updateUI()">
-                <div class="switch-track"></div>
-                <div class="switch-thumb"></div>
-            </label>
+          <div class="toggle-label">
+            <strong>Use Dual Monitors</strong>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="use_dual" onchange="updateUI()" />
+            <div class="switch-track"></div>
+            <div class="switch-thumb"></div>
+          </label>
         </div>
-        <div class="monitor-fields">
+
+        <div class="settings-grid" style="margin-top: 20px">
+          <div class="field-group">
+            <label>Monitor 1</label>
+            <input
+              type="text"
+              id="mon_left"
+              value="eDP-1"
+              placeholder="eDP-1"
+              oninput="updateUI()"
+            />
+          </div>
+          <div class="field-group">
+            <label>Resolution 1</label>
+            <div class="select-wrap">
+              <select
+                id="res_left_select"
+                onchange="
+                  toggleCustomRes('left');
+                  updateUI();
+                "
+              >
+                <option value="1920x1080">1920x1080</option>
+                <option value="2560x1440">2560x1440</option>
+                <option value="3840x2160">3840x2160</option>
+                <option value="1920x1080@144Hz">1920x1080@144Hz</option>
+                <option value="custom">Custom...</option>
+              </select>
+            </div>
+            <input
+              type="text"
+              id="res_left_custom"
+              placeholder="e.g. 1366x768"
+              style="display: none; margin-top: 8px"
+              oninput="updateUI()"
+            />
+          </div>
+        </div>
+
+        <div class="mon-field-2" id="mon_right_div">
+          <div class="settings-grid" style="margin-top: 14px">
             <div class="field-group">
-                <label>Monitor 1</label>
-                <input type="text" id="mon_left" value="eDP-1" placeholder="eDP-1" oninput="updateUI()">
+              <label>Monitor 2</label>
+              <input
+                type="text"
+                id="mon_right"
+                value="HDMI-A-2"
+                placeholder="HDMI-A-2"
+                oninput="updateUI()"
+              />
             </div>
-            <div class="field-group mon-field-2" id="mon_right_div">
-                <label>Monitor 2</label>
-                <input type="text" id="mon_right" value="HDMI-A-2" placeholder="HDMI-A-2" oninput="updateUI()">
+            <div class="field-group">
+              <label>Resolution 2</label>
+              <div class="select-wrap">
+                <select
+                  id="res_right_select"
+                  onchange="
+                    toggleCustomRes('right');
+                    updateUI();
+                  "
+                >
+                  <option value="1920x1080">1920x1080</option>
+                  <option value="2560x1440">2560x1440</option>
+                  <option value="3840x2160">3840x2160</option>
+                  <option value="1920x1080@144Hz">1920x1080@144Hz</option>
+                  <option value="custom">Custom...</option>
+                </select>
+              </div>
+              <input
+                type="text"
+                id="res_right_custom"
+                placeholder="e.g. 1366x768"
+                style="display: none; margin-top: 8px"
+                oninput="updateUI()"
+              />
             </div>
+          </div>
         </div>
         <div class="cmd-hint">
-            <span class="cmd-hint-label">find display names:</span>
-            <code>swaymsg -t get_outputs | grep name</code>
-            <button class="cmd-hint-copy" onclick="copyCmd(this)">copy</button>
+          <span class="cmd-hint-label">find display names:</span>
+          <code>swaymsg -t get_outputs | grep name</code>
+          <button class="cmd-hint-copy" onclick="copyCmd(this)">copy</button>
         </div>
-        <div class="preview-bar" style="margin-top:10px">
-            <span>output:</span>
-            <code id="mon-code">eDP-1</code>
+        <div class="preview-bar" style="margin-top: 10px">
+          <span>output:</span>
+          <code id="mon-code">eDP-1</code>
         </div>
-    </div>
+      </div>
 
-    <div class="card" data-label="03">
+      <div class="card" data-label="03">
         <div class="card-title">Wallpapers</div>
         <p class="wall-section-label">Primary Monitor</p>
         <div class="carousel" id="carousel1"></div>
-        <div id="wall2_ui" style="display:none">
-            <hr class="divider">
-            <p class="wall-section-label">Secondary Monitor</p>
-            <div class="carousel" id="carousel2"></div>
+        <div id="wall2_ui" style="display: none">
+          <hr class="divider" />
+          <p class="wall-section-label">Secondary Monitor</p>
+          <div class="carousel" id="carousel2"></div>
         </div>
-    </div>
+      </div>
 
-    <div class="card" data-label="04">
+      <div class="card" data-label="04">
         <div class="card-title">Apps & Keyboard</div>
         <div class="settings-grid">
-            <div class="field-group">
-                <label>Browser</label>
-                <div class="select-wrap">
-                    <select id="browser">
-                        <option value="firefox">Firefox</option>
-                        <option value="google-chrome">Google Chrome</option>
-                        <option value="brave">Brave</option>
-                        <option value="librewolf">LibreWolf</option>
-                    </select>
-                </div>
+          <div class="field-group">
+            <label>Browser</label>
+            <div class="select-wrap">
+              <select id="browser">
+                <option value="firefox">Firefox</option>
+                <option value="google-chrome">Google Chrome</option>
+                <option value="brave">Brave</option>
+                <option value="librewolf">LibreWolf</option>
+              </select>
             </div>
-            <div class="field-group">
-                <label>Languages</label>
-                <div class="select-wrap">
-                    <select id="kbd_layout">
-                        <option value="us,ru">English + Russian</option>
-                        <option value="us,ua">English + Ukrainian</option>
-                        <option value="us,kz">English + Kazakh</option>
-                        <option value="us">English Only</option>
-                    </select>
-                </div>
+          </div>
+          <div class="field-group">
+            <label>Languages</label>
+            <div class="select-wrap">
+              <select id="kbd_layout">
+                <option value="us,ru">English + Russian</option>
+                <option value="us,ua">English + Ukrainian</option>
+                <option value="us,kz">English + Kazakh</option>
+                <option value="us">English Only</option>
+              </select>
             </div>
-            <div class="field-group">
-                <label>EN Layout</label>
-                <div class="select-wrap">
-                    <select id="kbd_variant">
-                        <option value='""'>QWERTY</option>
-                        <option value='"colemak,"'>Colemak</option>
-                        <option value='"dvorak,"'>Dvorak</option>
-                    </select>
-                </div>
+          </div>
+          <div class="field-group">
+            <label>EN Layout</label>
+            <div class="select-wrap">
+              <select id="kbd_variant">
+                <option value='""'>QWERTY</option>
+                <option value='"colemak,"'>Colemak</option>
+                <option value='"dvorak,"'>Dvorak</option>
+              </select>
             </div>
-            <div class="field-group">
-                <label>Language Switch</label>
-                <div class="select-wrap">
-                    <select id="kbd_options">
-                        <option value="grp:alt_shift_toggle">Alt + Shift</option>
-                        <option value="grp:win_space_toggle">Win + Space</option>
-                        <option value="grp:caps_toggle">Caps Lock</option>
-                    </select>
-                </div>
+          </div>
+          <div class="field-group">
+            <label>Language Switch</label>
+            <div class="select-wrap">
+              <select id="kbd_options">
+                <option value="grp:alt_shift_toggle">Alt + Shift</option>
+                <option value="grp:win_space_toggle">Win + Space</option>
+                <option value="grp:caps_toggle">Caps Lock</option>
+              </select>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="card" data-label="05">
+      <div class="card" data-label="05">
         <div class="card-title">Color Palette</div>
         <div class="palette-grid">
-            <div class="color-swatch">
-                <div class="color-preview">
-                    <div class="color-preview-bg" id="bg-c_primary" style="background:#1a1a1a"></div>
-                    <input type="color" id="c_primary" value="#1a1a1a" oninput="syncColor('c_primary')">
-                </div>
-                <div class="color-info"><small>Primary</small><span class="color-hex" id="hex-c_primary">#1a1a1a</span></div>
+          <div class="color-swatch">
+            <div class="color-preview">
+              <div
+                class="color-preview-bg"
+                id="bg-c_primary"
+                style="background: #1a1a1a"
+              ></div>
+              <input
+                type="color"
+                id="c_primary"
+                value="#1a1a1a"
+                oninput="syncColor('c_primary')"
+              />
             </div>
-            <div class="color-swatch">
-                <div class="color-preview">
-                    <div class="color-preview-bg" id="bg-c_secondary" style="background:#fcfcfc"></div>
-                    <input type="color" id="c_secondary" value="#fcfcfc" oninput="syncColor('c_secondary')">
-                </div>
-                <div class="color-info"><small>Secondary</small><span class="color-hex" id="hex-c_secondary">#fcfcfc</span></div>
+            <div class="color-info">
+              <small>Primary</small
+              ><span class="color-hex" id="hex-c_primary">#1a1a1a</span>
             </div>
-            <div class="color-swatch">
-                <div class="color-preview">
-                    <div class="color-preview-bg" id="bg-c_tertiary" style="background:#bfae9f"></div>
-                    <input type="color" id="c_tertiary" value="#bfae9f" oninput="syncColor('c_tertiary')">
-                </div>
-                <div class="color-info"><small>Tertiary</small><span class="color-hex" id="hex-c_tertiary">#bfae9f</span></div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview">
+              <div
+                class="color-preview-bg"
+                id="bg-c_secondary"
+                style="background: #fcfcfc"
+              ></div>
+              <input
+                type="color"
+                id="c_secondary"
+                value="#fcfcfc"
+                oninput="syncColor('c_secondary')"
+              />
             </div>
-            <div class="color-swatch">
-                <div class="color-preview">
-                    <div class="color-preview-bg" id="bg-c_accent" style="background:#ac0d77"></div>
-                    <input type="color" id="c_accent" value="#ac0d77" oninput="syncColor('c_accent')">
-                </div>
-                <div class="color-info"><small>Accent</small><span class="color-hex" id="hex-c_accent">#ac0d77</span></div>
+            <div class="color-info">
+              <small>Secondary</small
+              ><span class="color-hex" id="hex-c_secondary">#fcfcfc</span>
             </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview">
+              <div
+                class="color-preview-bg"
+                id="bg-c_tertiary"
+                style="background: #bfae9f"
+              ></div>
+              <input
+                type="color"
+                id="c_tertiary"
+                value="#bfae9f"
+                oninput="syncColor('c_tertiary')"
+              />
+            </div>
+            <div class="color-info">
+              <small>Tertiary</small
+              ><span class="color-hex" id="hex-c_tertiary">#bfae9f</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview">
+              <div
+                class="color-preview-bg"
+                id="bg-c_accent"
+                style="background: #ac0d77"
+              ></div>
+              <input
+                type="color"
+                id="c_accent"
+                value="#ac0d77"
+                oninput="syncColor('c_accent')"
+              />
+            </div>
+            <div class="color-info">
+              <small>Accent</small
+              ><span class="color-hex" id="hex-c_accent">#ac0d77</span>
+            </div>
+          </div>
         </div>
-        <div style="display:flex; gap:0; height:6px; border-radius:4px; overflow:hidden; margin-top:20px;">
-            <div id="preview-primary" style="flex:1; background:#1a1a1a;"></div>
-            <div id="preview-secondary" style="flex:1; background:#fcfcfc;"></div>
-            <div id="preview-tertiary" style="flex:1; background:#bfae9f;"></div>
-            <div id="preview-accent" style="flex:1; background:#ac0d77;"></div>
+        <div
+          style="
+            display: flex;
+            gap: 0;
+            height: 6px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 20px;
+          "
+        >
+          <div id="preview-primary" style="flex: 1; background: #1a1a1a"></div>
+          <div
+            id="preview-secondary"
+            style="flex: 1; background: #fcfcfc"
+          ></div>
+          <div id="preview-tertiary" style="flex: 1; background: #bfae9f"></div>
+          <div id="preview-accent" style="flex: 1; background: #ac0d77"></div>
         </div>
-    </div>
+      </div>
 
-    <div class="btn-wrap">
+      <div class="btn-wrap">
         <button class="btn-main" id="genBtn" onclick="buildZip()">
-            <div class="btn-inner">
-                <span class="btn-icon">⬇</span>
-                <div>
-                    <div>Download spros_my_config.zip</div>
-                    <div class="btn-sub">user.conf · colors.css</div>
-                </div>
+          <div class="btn-inner">
+            <span class="btn-icon">⬇</span>
+            <div>
+              <div>Download spros_my_config.zip</div>
+              <div class="btn-sub">user.conf · colors.css</div>
             </div>
-            <div class="btn-glow"></div>
+          </div>
+          <div class="btn-glow"></div>
         </button>
+      </div>
+
+      <footer>
+        5pr05 dotfiles —
+        <a href="https://github.com/5pr05/spros-plove-dotfiles">github</a><br />
+        <a href="https://www.youtube.com/@5pr05">my youtube channel</a>
+      </footer>
     </div>
 
-    <footer>
-        5pr05 dotfiles — <a href="https://github.com/5pr05/spros-plove-dotfiles">github</a><br/>
-        <a href="https://www.youtube.com/@5pr05">my youtube channel</a>
-    </footer>
-</div>
+    <div class="toast" id="toast">
+      <span class="toast-icon">✓</span>
+      <span>spros_config.zip is ready!</span>
+    </div>
 
-<div class="toast" id="toast">
-    <span class="toast-icon">✓</span>
-    <span>spros_config.zip is ready!</span>
-</div>
-
-<script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

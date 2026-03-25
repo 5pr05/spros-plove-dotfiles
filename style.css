@@ -179,14 +179,12 @@ h1 span { color: var(--accent); }
     margin-top: 20px;
 }
 .mon-field-2 {
-    overflow: hidden; max-width: 0; opacity: 0;
-    transition: max-width 0.35s ease, opacity 0.3s ease;
+    overflow: hidden; max-height: 0; opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
 }
-.mon-field-2.visible { max-width: 600px; opacity: 1; }
+.mon-field-2.visible { max-height: 100px; opacity: 1; }
 @media (max-width: 560px) {
-    .monitor-fields { grid-template-columns: 1fr; }
-    .mon-field-2 { max-width: unset; max-height: 0; }
-    .mon-field-2.visible { max-height: 80px; }
+    .mon-field-2.visible { max-height: 160px; }
 }
 .field-group label {
     display: block; font-size: 10px; letter-spacing: 2px;
