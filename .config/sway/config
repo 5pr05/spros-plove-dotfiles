@@ -12,8 +12,7 @@ exec sh -c "Telegram & sleep 2; keepassxc"
 exec brightnessctl set 100%
 exec wl-paste --watch cliphist store
 exec kanshi
-exec /usr/lib/xdg-desktop-portal -r
-exec /usr/lib/xdg-desktop-portal-wlr -r
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec swayosd-server
 
 # Workspace assignments
