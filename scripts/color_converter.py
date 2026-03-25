@@ -1,7 +1,9 @@
 import sys
 import re
+import os
+import urllib.request
+from pathlib import Path
 
-# Список замен
 color_replacements = {
     "2E3440": "262626",
     "3B4252": "403D3B",
@@ -16,22 +18,34 @@ color_replacements = {
     "5E81AC": "736D51",
 }
 
-def replace_colors_in_file(file_path):
+NORD_URL = "https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim"
+
+HOME = str(Path.home())
+NVIM_COLORS_DIR = os.path.join(HOME, ".config", "nvim", "colors")
+TARGET_FILE = os.path.join(NVIM_COLORS_DIR, "nord.vim")
+
+def download_and_patch_theme():
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            content = file.read()
+        os.makedirs(NVIM_COLORS_DIR, exist_ok=True)
         
-        # Производим замену всех цветов без учета регистра
+        print("Downloading the original Nord palette...")
+        req = urllib.request.Request(NORD_URL)
+        with urllib.request.urlopen(req) as response:
+            content = response.read().decode('utf-8')
+
+        print("Converting colors for G3N SWAY ENGINE...")
         for old_color, new_color in color_replacements.items():
             content = re.sub(old_color, new_color, content, flags=re.IGNORECASE)
-        
-        with open(file_path, 'w', encoding='utf-8') as file:
+
+        with open(TARGET_FILE, 'w', encoding='utf-8') as file:
             file.write(content)
-        
-        print(f"Цвета в файле {file_path} успешно заменены.")
+
+        print(f"Theme successfully created and saved to: {TARGET_FILE}")
+        print("Do not forget to add 'colorscheme nord' to your init.vim or init.lua")
+
     except Exception as e:
-        print(f"Ошибка при обработке файла: {e}")
+        print(f"Error processing theme: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    file_path = input("Введите путь к файлу: ").strip()
-    replace_colors_in_file(file_path)
+    download_and_patch_theme()
