@@ -85,8 +85,8 @@ exec_always {
 }
 
 # Monitor setup
-output $monitor-right position 0,0 scale 1
-output $monitor-left position -1920,0 scale 1
+output $monitor-right resolution $resolution-right position 0,0 scale 1
+output $monitor-left resolution $resolution-left position -1920,0 scale 1
 
 for_window [class="gluqlo"] fullscreen enable, border none
 exec swayidle -w \
