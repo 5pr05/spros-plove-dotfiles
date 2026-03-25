@@ -141,9 +141,9 @@ async function buildZip() {
   const userConf = `set $mod ${document.querySelector('input[name="mod"]:checked').value}
 
 set $monitor-left   ${m1}
-set $resolution_left ${r1}
+set $resolution-left ${r1}
 set $monitor-right  ${isDual ? m2 : "NONE"}
-set $resolution_right ${isDual ? r2 : "NONE"}
+set $resolution-right ${isDual ? r2 : "NONE"}
 set $wallpaper1 ~/.config/sway/wallpaper/${selW1.filename}
 set $wallpaper2 ${isDual ? `~/.config/sway/wallpaper/${selW2.filename}` : `~/.config/sway/wallpaper/${selW1.filename}`}
 
