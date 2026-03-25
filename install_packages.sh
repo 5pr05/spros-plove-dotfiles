@@ -2,7 +2,7 @@
 
 echo "/ [ ^_^]_##     Starting SPROS sway config installation..."
 
-sudo pacman -Syu --needed base-devel git
+sudo pacman -Syu --needed base-devel
 
 if ! command -v yay &> /dev/null; then
     echo "Installing yay..."
