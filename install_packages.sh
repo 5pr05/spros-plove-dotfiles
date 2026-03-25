@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Starting SPROS sway config installation..."
+echo "/ [ ^_^]_##     Starting SPROS sway config installation..."
 
 sudo pacman -Syu --needed base-devel git
 
@@ -13,10 +13,10 @@ if ! command -v yay &> /dev/null; then
     rm -rf yay
 fi
 
-echo "Installing main system packages..."
+echo "/ [ ^_^]_##     Installing main system packages..."
 sudo pacman -S --needed \
     python \
-    wayland wayland-protocols xorg-server-xwayland xdg-desktop-portal-wlr qt5-wayland \
+    wayland wayland-protocols xorg-server-xwayland xdg-desktop-portal-wlr xdg-desktop-portal-gtk qt5-wayland \
     pipewire pipewire-pulse pavucontrol \
     bluez bluez-utils nm-connection-editor \
     swaybg waybar wofi swaylock autotiling \
@@ -27,17 +27,17 @@ sudo pacman -S --needed \
     firefox mpv keepassxc \
     brightnessctl ddcutil
 
-echo "Installing themes, fonts, and SwayFX from AUR..."
+echo "/ [ ^_^]_##     Installing themes, fonts, and SwayFX from AUR..."
 yay -S --needed \
     swayfx \
-    gruvbox-dark-gtk \
-    gruvbox-material-icon-theme \
+    everforest-gtk-theme-git \
+    gruvbox-plus-icon-theme \
     ttf-jetbrains-mono-nerd \
     ttf-font-awesome \
     ttf-nerd-fonts-symbols \
     ttf-apple-emoji
 
-echo "Enabling system services..."
+echo "/ [ ^_^]_##     Enabling system services..."
 sudo systemctl enable bluetooth
 
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
@@ -45,15 +45,15 @@ if [ "$SHELL" != "/usr/bin/zsh" ]; then
     chsh -s $(which zsh)
 fi
 
-echo "Applying configurations using stow..."
+echo "/ [ ^_^]_##     Applying configurations using stow..."
 stow . 
 
-echo "Running colorconverter.py to configure Neovim palette..."
-if [ -f "colorconverter.py" ]; then
+echo "/ [ ^_^]_##     Running colorconverter.py to configure Neovim palette..."
+if [ -f "color_converter.py" ]; then
     python color_converter.py
-    echo "Neovim palette successfully converted for G3N SWAY ENGINE!"
+    echo "/ [ ^_^]_##     Neovim palette successfully converted for G3N SWAY ENGINE!"
 else
-    echo "File colorconverter.py not found. Make sure you are in the dotfiles directory."
+    echo "/ [ ^_^]_##     File colorconverter.py not found. Make sure you are in the dotfiles directory."
 fi
 
-echo "Installation fully completed! Please reboot your computer."
+echo "/ [ ^_^]_##     Installation fully completed! Please reboot your computer."
